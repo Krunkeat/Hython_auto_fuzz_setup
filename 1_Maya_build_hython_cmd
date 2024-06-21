@@ -7,6 +7,12 @@ import sys, os
 import ramses as ram
 import maya.cmds as cmds
 
+# Constant
+hython = '"C:\\Program Files\\Side Effects Software\\Houdini 19.5.682\\bin\\hython.exe"'
+script = r"D:\Hython_script.py"
+hip = r"S:\SIC3D\SIC5\Projects\moutons\02-PROD\moutons_G_VFX\TEMPLATE_groom_{}.hipnc".format(name) # hipFile
+
+
 current_file = cmds.file(q=True, sn=True)
 myRamses = ram.Ramses.instance()
 currentItem = ram.RamItem.fromPath( current_file )
@@ -66,10 +72,6 @@ if currentItem.itemType() == "S":
 
     
     # Command build up
-    hython = '"C:\\Program Files\\Side Effects Software\\Houdini 19.5.682\\bin\\hython.exe"'
-    script = r"D:\houdini_groom_script_set_up.py"
-    
-    hip = r"S:\SIC3D\SIC5\Projects\moutons\02-PROD\moutons_G_VFX\TEMPLATE_groom_{}.hipnc".format(name) # hipFile
     cameras = cmds.ls(type=('camera'), l=True)
     root = [cam for cam in cameras if "camera" in cam][0]
     path_cam = "/" + "/".join(root.split("|")[-2:])
